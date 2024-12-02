@@ -1,0 +1,12 @@
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static "recipes/css/remedy.css" %}">
+<link rel="stylesheet" href="{% static "recipes/css/style.css" %}">
+
+{% if site_config.favicon %}
+  <link rel="shortcut icon" href="{{ site_config.favicon.url }}" type="image/x-icon">
+{% endif %}
+
+<title>{{ site_config.site_name }}</title>

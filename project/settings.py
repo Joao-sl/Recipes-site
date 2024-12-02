@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # My apps
     'recipes',
+    'site_config',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'site_config.site_config_context_processor.site_configs',
             ],
         },
     },
