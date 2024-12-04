@@ -1,14 +1,7 @@
 {% extends "base.html" %}
 
-{% comment %} {% block content %}
-   <p> {{ site_config.site_name }} </p>
-{% endblock content %} {% endcomment %}
-
 {% block content %}
-  <p> {{ site_config.title }} </p>
-  <p> {{ site_config.site_name }} </p>
-  <p>{{ site_config.description }} </p>
+  {% for titulo in recipe %}
+    <p>• {{ titulo.recipe_title }}</p>
+  {% endfor %}
 {% endblock content %}
-
-
-

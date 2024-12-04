@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from recipes.models import Recipe
 
-# Create your views here.
 
-
-def home(request):
+def home(request,):
+    recipes = Recipe.objects.all()
     return render(
         request,
-        'recipes/pages/home.html'
+        'recipes/pages/home.html',
+        {
+            'recipe': recipes,
+            'page_title': 'Home - '
+        }
     )
