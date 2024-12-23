@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="recipe-page-container">
+  <article class="recipe-page-content">
+
+    <div class="recipe-page-title-container">
+      <h1 class="">{{ recipe.recipe_title }}</h1>
+    </div>
+
+    <div class="recipe-page-img">
+      <img src="{{ recipe.recipe_image.url }}" alt="Foto de {{ recipe.recipe_title }}">
+    </div>
+
+    <div class="recipe-details">
+      <div class="time">
+        <i class="fa-solid fa-clock"></i>
+        <h2>{{ recipe.preparation_time }}</h2>
+      </div>
+      <div class="difficulty">
+        {% if recipe.difficulty == 'Facil' %}
+        <i class="fa-regular fa-star"></i>
+        <h2>{{ recipe.get_difficulty_display }}</h2>
+
+        {% elif recipe.difficulty == 'Medio' %}
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <h2>{{ recipe.get_difficulty_display }}</h2>
+
+        {% else %}
+        <i class="fa-solid fa-star"></i>
+        <h2>{{ recipe.get_difficulty_display }}</h2>
+        {% endif %}
+      </div>
+
+      {% if recipe.servings > 0 %}
+        <div class="servings">
+          {% if recipe.servings == 1 %}
+            <h2>{{ recipe.servings }} Porção</h2>
+          {% else %}
+            <h2>{{ recipe.servings }} Porções</h2>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="text-with-line">
+      <div class="text-line-container">
+        <hr>
+        <h2>Ingredientes</h2>
+        <hr>
+      </div>
+      {% if recipe.servings > 0 and recipe.servings == 1 %}
+        <p>{{ recipe.servings }} Porção</p>
+        {% else %}
+        <p>{{ recipe.servings }} Porções</p>
+      {% endif %}
+    </div>
+
+    <div class="ingredients">
+      <ul>
+        {% for ingredient in ingredients_list %}
+        <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="text-with-line">
+      <div class="text-line-container">
+        <hr>
+        <h2>Modo de Preparo</h2>
+        <hr>
+      </div>
+      <p>{{ recipe.preparation_time }}</p>
+    </div>
+
+    <div class="recipe-page-directions">
+      <div class="direction">
+        <ol>
+          {% for direction in directions_list %}
+          <li>{{ direction }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+    {% if recipe.tips %}
+    <div class="text-with-line">
+      <div class="text-line-container">
+        <hr>
+        <h2>Dicas</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="recipe-page-tips">
+      {% comment %} linebreaks adiciona as quebras de linha do textfield no template{% endcomment %}
+      <p>{{ recipe.tips|linebreaks }}</p>
+    </div>
+    {% endif %}
+
+  </article>
+
+  <aside class="recipe-page-aside">
+    <h1>Você pode gostar</h1>
+    <p>Em breve </p>
+  </aside>
+
+</div>
+{% endblock content %}

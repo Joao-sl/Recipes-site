@@ -1,1 +1,34 @@
-<h1>FOOTER</h1>
+<footer>
+  <div class="footer-container">
+    
+    <div class="footer-copyright">
+      <h3>{{ site_config.domain }}</h3>
+      <p>Copyright® {{ site_config.site_name }} {% now "Y"%} - Todos os direitos reservados.</p>
+    </div>
+    
+    <div class="footer-resources">
+      <h3>Receitas por tag</h1>
+      {% for category in categories|slice:2 %}
+        <a href="{% url "recipes:category_search" category.name %}">{{ category }}</a>
+      {% endfor %}
+      <a href="{% url "recipes:categories" %}">Categorias</a>
+    </div>
+
+      <div class="footer-socials">
+        <h3>Nos acompanhe nas redes sociais</h3>
+        <a href="{{ site_config.youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="{{ site_config.tiktok }}" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="{{ site_config.instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="{{ site.config.twitter }}" target="_blank"><i class="fa-brands fa-twitter"></i></i></a>
+      </div>
+      
+      <div class="footer-logo">
+        <img class="logo-footer" src="{{ site_config.footer_logo.url }}" alt="Logo da empresa">
+        <div class="contact-container">
+          <i class="fa-regular fa-envelope"></i>
+          <p>{{ site_config.email }}</p>
+        </div>
+      </div>
+
+  </div>
+</footer>

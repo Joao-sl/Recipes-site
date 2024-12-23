@@ -1,4 +1,846 @@
+:root {
+  --default-orange: #ff7043;
+  --default-orange-darker: #b16003;
+  --default-bg-color: #f8f8f8;
+  --default-beige: #FFF3E0;
+  --blue-hover: #039BE5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: grey;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.6rem;
+  color: #1c1c1c;
+  background-color: rgb(252, 252, 252);
+}
+
+a, button {
+  text-decoration: none;
   color: white;
+}
+
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0); 
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.main-content {
+  max-width: 65%;
+  margin: 0 auto;
+}
+
+.not-found {
+  background-color: var(--default-beige);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.08);
+  margin-bottom: 6rem;
+  padding: 4rem 0rem 4rem 0rem;
+  text-align: center;
+}
+
+.not-found a {
+  font-size: 1.8rem;
+  padding: 1rem;
+  background-color: var(--default-orange);
+  border-radius: 0.5rem;
+}
+
+.not-found a:hover {
+  background-color: var(--blue-hover);
+}
+
+/* ----------------------------LINE-WITH-TEXT---------------------------- */
+
+.text-with-line {
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  color: #1c1c1c;
+}
+.text-with-line p {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.text-line-container {
+  display: flex;
+  align-items: center;
+}
+
+.text-line-container hr {
+  flex-grow: 1;
+  border: none;
+  border-top: 0.2rem solid #6968685e; /* cor e espessura da linha */
+}
+
+.text-line-container h2 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  padding: 0 1.8rem;
+}
+
+/* ---------------------------LINE-WITH-TEXT-END--------------------------- */
+
+
+
+
+
+
+
+
+/* ------------------------------MENU------------------------------ */
+
+.header-container {
+  display: flex;
+  background-color: var(--default-beige); 
+  align-items: center; 
+  padding: 2rem 0rem 2rem 0rem;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ocupa toda a largura */
+}
+
+.logo-menu {
+  margin-right: 3rem;
+}
+
+.logo-menu img {
+  height: 5.4rem;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Faz com que os links ocupem o espaço central */
+}
+
+.nav-menu a {
+  font-size: 1.9rem;
+  padding: 0rem 4rem;
+  color: var(--default-orange);
+
+}
+.nav-menu a:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--blue-hover);
+  text-decoration-thickness: .2rem; 
+  text-underline-offset: 1rem;
+}
+
+.search-container {
+  display: flex;
+  margin-left: 3rem; 
+}
+
+.search-input {
+  border: none;
+  border-radius: 1.4rem;
+  padding: 1rem 1rem 1rem 1rem;
+  outline: none;
+  margin-right: 0.4rem;
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.08);
+}
+
+.search-input:focus {
+  outline: 0.2rem solid var(--default-orange);
+}
+
+.search-btn {
+  background-color: var(--default-orange);
+  border: none;
+  border-radius: 4rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: var(--blue-hover);
+}
+
+@media (max-width: 1000px){
+  .search-input {
+    width: 8.6rem
+  }
+  .nav-menu {
+    padding: 0rem;
+  }
+}
+
+
+@media (max-width: 874px){
+  .menu {
+    display: block;
+    padding-bottom: 2rem;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-menu a{
+    padding-top: 2rem;
+  }
+
+  .search-container {
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    margin: 0rem;
+  }
+
+  .search-input {
+    width: auto;
+  }
+
+  .logo-menu {
+    display: flex;
+    justify-content: center;
+    margin: 0rem;
+  }
+}
+
+/* --------------------------FIM-DO-MENU-------------------------- */
+
+
+
+
+/* ------------------------------HOME----------------------------- */
+
+.card-grid {
+  display: grid;
+  background-color: var(--default-beige);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.08);
+  /* margin-top: 6rem; */
+  margin-bottom: 6rem;
+  padding: 5rem 0rem 5rem 0rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(28rem, 100%), 1fr));
+  justify-items: center;
+  row-gap: 7rem;
+}
+
+.card-2 {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  width: 23rem;
+  height: 38rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.08);
+  background-color: rgb(252, 252, 252);
+  overflow: hidden;
+}
+
+.card-2 img {
+  width: 100%;
+  height: 19rem;
+  background-color: var(--default-orange);
+  padding-bottom: .3rem;
+  transition: transform 0.4s ease;
+}
+
+.card-2 img:hover {
+  transform: scale(1.05);
+}
+
+.preparation-time {
+  display: flex;
+  padding: 1.4rem 1.6rem 1rem 1.6rem;
+  margin-top: 1rem;
+}
+
+.card-2 h1 {
+  color: black;
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0rem 1.6rem 0rem 1.6rem;
+  min-height: 4.4rem;
+
+  /* Garantir que o texto não ultrapasse o container */
+  display: -webkit-box;               /* Necessário para o line-clamp funcionar */
+  -webkit-line-clamp: 2;              /* Limita o número de linhas visíveis */
+  line-clamp: 2;                      /* Só pro vscode parar de encher o saco */
+  -webkit-box-orient: vertical;       /* Necessário para o line-clamp funcionar */
+  overflow: hidden;                   /* Oculta o texto excedente */
+  text-overflow: ellipsis;            /* Adiciona '...' ao final */
+}
+
+.card-2 h2 {
+  color: rgba(0, 0, 0, 0.651);
+  font-size: 1.2rem;
+  margin-left: 0.2rem;
+}
+
+.card-2 h3 {
+  color: rgba(0, 0, 0, 0.651);
+  font-size: 1rem;
+  padding: 1.3rem 0rem 1.5rem 1.6rem;
+}
+
+.card-2 .read-more-btn:hover {
+  background: var(--blue-hover);
+}
+
+.read-more {
+  margin-top: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  padding-top: 0.6rem;
+  align-items: center;
+}
+
+.read-more-btn {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  background-color: var(--default-orange);
+  padding: 1rem 3rem 1rem 1.6rem;
+  width: 100%;
+}
+
+.fa-clock {
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.651);   
+ 
+}
+
+.fa-star, .fa-star-half, .fa-star-half-stroke {
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.651); 
+  margin-left: 4rem;
+}
+
+.fa-arrow-right {
+  position: absolute;
+  margin-left: 10rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* -----------------------------FIM-HOME------------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------FOOTER------------------------------ */
+
+.footer-container {
+  display: flex;
+  background-color: var(--default-beige);
+  padding: 10rem;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.footer-copyright {
+  margin-right: 2rem;
+}
+
+.footer-copyright h3 {
+  color: black;
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+}
+
+.footer-copyright p {
+  font-size: 1.6rem;
+  max-width: 40rem;
+  color: black;
+}
+
+.footer-resources {
+  margin-right: 2rem;
+}
+
+.footer-resources h3 {
+  color: black;
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+}
+
+.footer-resources a {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  color: black;
+  padding-bottom: 1rem;
+}
+
+.footer-resources a:hover {
+  color: var(--default-orange);
+}
+
+.footer-socials h3 {
+  color: black;
+  font-size: 2rem;
+  max-width: 30rem;
+  margin-bottom: 2rem;
+}
+
+.footer-socials a {
+  color: black;
+  margin-right: 1rem;
+  font-size: 2.2rem;
+}
+
+.fa-youtube {
+  color: red;
+}
+
+.fa-tiktok {
+  background-image: linear-gradient(45deg, hsla(178, 100%, 47%, 1) 0%, hsla(341, 100%, 50%, 1) 100%);
+  -webkit-background-clip: text; /* Aplica o gradiente apenas no texto */
+  background-clip: text;
+  color: transparent; /* Torna o texto (ícone) transparente, para que apenas o gradiente seja visível */
+  color: black;
+}
+
+.fa-instagram {
+  background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+  -webkit-background-clip: text; /* Aplica o gradiente apenas no texto */
+  background-clip: text;
+  color: transparent; /* Torna o texto (ícone) transparente, para que apenas o gradiente seja visível */
+}
+
+.fa-twitter {
+  color: rgb(0, 191, 255);
+}
+
+.footer-logo img {
+  width: 30rem;
+  margin-bottom: 1.6rem;
+}
+
+.footer-logo p {
+  color: black;
+  font-size: 1.6rem;
+}
+
+.contact-container {
+  display: flex;
+  color: black;
+}
+
+.fa-envelope {
+  margin-right: 0.6rem;
+}
+
+@media (max-width: 1000px){
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-copyright {
+    margin-bottom: 4rem;
+    margin-left: 13rem;
+  }
+
+  .footer-resources {
+    margin-bottom: 4rem;
+    margin-right: 10rem;
+  }
+
+  .footer-socials {
+    margin-bottom: 4rem;
+    
+  }
+}
+
+@media (max-width: 777px) {
+  .footer-copyright {
+    margin-left: 0rem;
+    max-width: 29rem;
+  }
+}
+
+/* -----------------------------FIM-DA-FOOTER----------------------------- */
+
+
+/* ------------------------------RECIPE-PAGE------------------------------ */
+
+.recipe-page-container {
+  display: flex;
+  width: 66%;
+  margin: 0 auto;
+  padding-top: 4rem;
+  gap: 2rem;
+  padding: 2rem;
+  
+}
+
+.recipe-page-content {
+  width: 66.66%;
+  max-width: 88rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+.recipe-page-aside {
+  display: flex;
+  flex-direction: column;
+  width: 33.33%;
+  max-width: 40rem;
+  padding: 2rem 2rem 2rem 2rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.1);
+  color: black; /* APAGAR DEPOIS */
+}
+
+.recipe-page-title-container h1 {
+  font-size: 4.5rem; /* Aumenta o tamanho da fonte para dar mais destaque */
+  margin-bottom: 1rem;
+  margin-top: 0rem;
+  text-transform: capitalize;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.1rem;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #FF5733, #FF8C00); /* Gradiente de cor */
+  -webkit-background-clip: text; /* Faz o gradiente aparecer só no texto */
+  background-clip: text;
+  color: transparent; 
+  text-align: center; 
+}
+
+.recipe-page-img {
+  overflow: hidden;
+}
+
+.recipe-page-img img {
+  width: 100%;
+  height: auto;  /* Ajusta a altura automaticamente para manter a proporção */
+  min-height: 70vh; /* A imagem vai ter no mínimo 50% da altura da tela */
+  border-radius: 0.5rem;
+  box-shadow: 0.1rem 0.1rem 0.2rem var(--default-orange);
+  filter: brightness(0.9);
+}
+
+.recipe-details {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--default-beige);
+  max-width: 100%;
+  border-radius: 0.5rem;
+  color: #703416;
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 1rem 0rem 1rem 0rem;
+  margin-top: 1rem;
+}
+
+.recipe-details .time {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-details .time .fa-clock {
+  font-size: 1.3rem;
+  margin-right: 0.4rem;
+  color: #703416;
+}
+
+.recipe-details .time h2 {
+  font-size: 1.6rem;
+}
+
+.recipe-details .difficulty {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-details .difficulty .fa-star {
+  font-size: 1.3rem;
+  margin-right: 0.4rem;
+  margin-left: 0rem;
+  color: #703416;
+}
+
+.recipe-details .difficulty .fa-star-half-stroke {
+  font-size: 1.3rem;
+  margin-right: 0.4rem;
+  margin-left: 0rem;
+  color: #703416;
+}
+
+.recipe-details .difficulty h2 {
+  font-size: 1.6rem;
+}
+
+.recipe-details .servings {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-details .servings h2 {
+  font-size: 1.6rem;
+}
+
+.ingredients {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ingredients li {
+  padding: 1rem;
+  font-size: 1.9rem;
+  color: #1c1c1c;
+  list-style-position: inside;
+}
+
+.ingredients li::marker {
+  color: var(--default-orange);
+  font-size: 1.6rem; 
+}
+
+
+.recipe-page-directions .direction{
+  display: flex;
+  color: #1c1c1c;
+  font-size: 1.8rem;
+}
+
+
+.recipe-page-directions .direction ol {
+  width: 100%;
+  counter-reset: step; /* Inicia o contador customizado */
+}
+
+.recipe-page-directions .direction ol li {
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 5rem 2rem 2rem 2rem;
+  list-style-position: inside;
+  counter-increment: step; /* Incrementa o contador customizado */
+  list-style: none;
+  position: relative;
+}
+
+.recipe-page-directions .direction ol li::before {
+  position: absolute;
+  top: 9%;
+  content: "Passo " counter(step) "."; /* Texto adicional + número gerado */
+  color: var(--default-orange);
+  font-weight: bold;
+}
+
+.recipe-page-tips {
+  background-color: var(--default-beige);
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  color: #1c1c1c;
+  border-radius: 0.5rem;
+  line-height: 4rem;
+  font-size: 1.8rem;
+}
+
+/* Cor da seleção do site */
+::selection {
+  background-color: var(--default-orange); 
+  color: #000000;
+}
+
+@media (max-width: 1100px) {
+  .recipe-page-container {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .recipe-page-content {
+    padding-right: 0rem;
+    padding-left: 0rem;
+    margin-bottom: 6rem;
+  }
+  
+  .recipe-page-aside {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 100%;
+    padding-bottom: 2rem;
+  }
+
+  .recipe-page-content {
+    max-width: 100%;
+  }
+
+  .recipe-page-img img {
+    width: 100%;
+    height: auto;  /* Ajusta a altura automaticamente para manter a proporção */
+    min-height: 65rem; /* A imagem vai ter no mínimo 50% da altura da tela */
+  }
+}
+
+
+@media (max-width: 800px) {
+  .recipe-page-img img {
+    width: 100%;
+    height: auto;  /* Ajusta a altura automaticamente para manter a proporção */
+    min-height: 30rem; /* A imagem vai ter no mínimo 50% da altura da tela */
+  }
+}
+/* ---------------------------FIM-RECIPE-PAGE--------------------------- */
+
+
+
+
+
+/* -----------------------------Categories----------------------------- */
+
+.category-card-grid {
+  display: grid;
+  background-color: var(--default-beige);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.08);
+  margin-bottom: 6rem;
+  padding: 4rem 0rem 6rem 0rem;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  justify-items: center;
+  row-gap: 7rem;
+}
+
+.category-card {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.08);
+  transition: 0.4s;
+}
+
+.category-card .category-card-image {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.category-card .category-card-image img {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.category-card .category-card-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  color: #1c1c1c;
+  font-weight: bold;
+  display: -webkit-box;               /* Necessário para o line-clamp funcionar */
+  -webkit-line-clamp: 2;              /* Limita o número de linhas visíveis */
+  line-clamp: 2;                      /* Só pro vscode parar de encher o saco */
+  -webkit-box-orient: vertical;       /* Necessário para o line-clamp funcionar */
+  overflow: hidden;                   /* Oculta o texto excedente */
+  text-overflow: ellipsis;            /* Adiciona '...' ao final */
+}
+
+.category-card:hover {
+  transform: scale(0.98, 0.98);
+}
+
+@media (min-width: 1025px) {
+  .category-card-grid {
+    grid-template-columns: repeat(6, 1fr); /* Cinco cards por linha em telas grandes */
+  }
+}
+
+/* ---------------------------FIM-Categories--------------------------- */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: -2rem;
+  margin-bottom: 4rem;
+  font-size: 1.6rem;
+  color: white;
+}
+
+.fa-backward {
+  color: white;
+  padding: 1.2rem 1.4rem 1.2rem 1.1rem;
+  background-color: var(--default-orange);
+  border-radius: 4rem;
+}
+
+.fa-forward {
+  color: white;
+  padding: 1.2rem 1.1rem 1.2rem 1.3rem;
+  background-color: var(--default-orange);
+  border-radius: 4rem;
+}
+
+.pagination .page-numbers span {
+  padding: 1rem;
+  background-color: var(--default-orange);
+  border-radius: 50%;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.pagination .page-numbers .current {
+  padding: 1rem 1.4rem 1rem 1.4rem;
+  background-color: var(--blue-hover);
+  border-radius: 4rem;
+}
+
+.pagination .next, .previous {
+  padding: 1rem 1.4rem 1rem 1.4rem;;
+  background-color: var(--default-orange);
+  border-radius: 2rem;
+}
+
+.pagination .page-numbers a {
+  padding: 1rem 1.4rem 1rem 1.4rem;
+  background-color: var(--default-orange);
+  border-radius: 4rem;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.fa-backward:hover, .fa-forward:hover, .previous:hover,
+.next:hover, .pagination .page-numbers a:hover{
+  background-color: var(--default-orange-darker);
+}
+
+@media (max-width: 772px) {
+  .page-numbers {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }

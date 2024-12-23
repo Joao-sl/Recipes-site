@@ -1,26 +1,5 @@
+from utils.img_resizer import resize_image, if_image_changed_favicon
 from django.db import models
-
-# Create your models here.
-
-
-class Links(models.Model):
-    class Meta:
-        verbose_name = 'Link'
-        verbose_name_plural = 'Links'
-
-    text = models.CharField(max_length=78)
-    url = models.CharField(max_length=2048)
-    open_new_tab = models.BooleanField(default=False)
-
-    # Relação de UM para MUITOS, UM SiteConfig tem vários Menu, O menu tem uma chave do SiteConfig
-    site_config = models.ForeignKey(
-        'SiteConfig', on_delete=models.CASCADE,
-        default=None,
-        null=True
-    )
-
-    def __str__(self):
-        return self.text
 
 
 class SiteConfig(models.Model):
@@ -30,6 +9,23 @@ class SiteConfig(models.Model):
     title = models.CharField(max_length=78)
     site_name = models.CharField(max_length=78)
     description = models.CharField(max_length=278)
+    tiktok = models.URLField(
+        max_length=200,
+        blank=True,
+        null=True,
+        help_text='Cole o link completo do perfil, Exemplo: https://www.tiktok.com/@exemplo'
+    )
+    twitter = models.URLField(max_length=200, blank=True, null=True)
+    instagram = models.URLField(max_length=200, blank=True, null=True)
+    youtube = models.URLField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=200, blank=True, null=True)
+
+    domain = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        help_text='Não insira o "https://" apenas o domínio, Exemplo nomedosite.com'
+    )
 
     warning = models.CharField(
         default='BE CAREFUL IF YOU DELETE THIS SITE CONFIG YOU WILL DELETE EVERYTHING',
@@ -37,13 +33,27 @@ class SiteConfig(models.Model):
         max_length=78,
     )
 
-    show_pagination = models.BooleanField(default=True)
-
     favicon = models.ImageField(
         upload_to='assets/favicon/%Y/%m',
-        blank=True,
         null=True,
     )
+
+    footer_logo = models.ImageField(
+        upload_to='assets/footer_logo/%Y/%m',
+        null=True,
+    )
+
+    def save(self, *args, **kwargs):
+        if self.favicon and if_image_changed_favicon(self):
+            resized_favicon = resize_image(
+                self.favicon,
+                height=32,
+                width=32,
+                quality=100,
+                optimize=True
+            )
+            self.favicon = resized_favicon
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

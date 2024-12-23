@@ -1,7 +1,76 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for titulo in recipe %}
-    <p>• {{ titulo.recipe_title }}</p>
-  {% endfor %}
+
+{% if recipes %}
+    <div class="text-with-line main-content">
+      <div class="text-line-container">
+        <hr>
+        <h2>ESCOLHA SUA RECEITA</h2>
+        <hr>
+      </div>
+      <p>ULTIMAS RECEITAS</p>
+    </div>
+
+    <div class="card-grid main-content">
+    {% for recipe in recipes %}
+      <div class="card-2">
+        
+        <a href="{% url "recipes:recipe" recipe.slug %}"><img src="{{ recipe.recipe_image.url }}" alt="Imagem de {{ recipe.recipe_title }}"></a>
+        <h3>{{ recipe.category }} / {{ recipe.created_at|date:"d M Y" }}</h3>
+
+        <h1>{{ recipe.recipe_title }}</h1>
+
+        <div class="preparation-time">
+          <i class="fa-solid fa-clock"></i>
+          <h2>{{ recipe.preparation_time }}</h2>
+
+          {% comment %}
+          .get_FOO_display() é um método do django para campos com choices,
+          ele retorna o valor legível da tupla, e não o que é armazena no banco de dados
+          {% endcomment %}
+          {% if recipe.difficulty == 'Facil' %}
+            <i class="fa-regular fa-star"></i>
+            <h2>{{ recipe.get_difficulty_display }}</h2>
+
+          {% elif recipe.difficulty == 'Medio' %}
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <h2>{{ recipe.get_difficulty_display }}</h2>
+
+          {% else %}
+            <i class="fa-solid fa-star"></i>
+            <h2>{{ recipe.get_difficulty_display }}</h2>
+          {% endif %}
+        </div>
+
+        <div class="read-more">
+          <a class="read-more-btn" href="{% url 'recipes:recipe' recipe.slug %}">Ver Receita</a>
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="text-with-line main-content">
+      <div class="text-line-container">
+        <hr>
+        <h2>NADA ENCONTRADO</h2>
+        <hr>
+      </div>
+      <p>Daidai</p>
+    </div>
+ 
+    </div>  
+
+    <div class="main-content not-found">
+      <h1>Desculpe, não conseguimos encontrar o que você procura. Tente novamente!</h1>
+      <br>
+      <h1>Sugestões</h1>
+      <p>Verifique a ortografia</p>
+      <p>Você pode pesquisar pelo título da receita, categorias e dificuldade.</p>
+      <br>
+      <a href="{% url "recipes:home" %}">Voltar a pagina inicial</a>
+    </div>
+{% endif %}
 {% endblock content %}

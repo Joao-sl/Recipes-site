@@ -1,1 +1,38 @@
-<h1>PAGINATION</h1>
+{% if recipes and recipes.has_other_pages %}
+<div class="pagination main-content">
+  <span class="step-links">
+    {% if recipes.has_previous %}
+    <a href="?page=1&q={{ request.GET.q.strip }}">
+      <i class="fa-solid fa-backward"></i>
+    </a>
+    <a href="?page={{ recipes.previous_page_number }}&q={{ request.GET.q.strip }}">
+      <span class="previous">Anterior</span>
+    </a>
+    {% endif %}
+
+    <!-- Números das páginas com intervalo -->
+    <span class="page-numbers">
+      {% for num in recipes.paginator.page_range %}
+      {% if num == recipes.number %}
+      <span class="current">{{ num }}</span> <!-- Página atual -->
+      {% elif num > recipes.number|add:-5 and num < recipes.number|add:2 %} <a
+        href="?page={{ num }}&q={{ request.GET.q.strip }}">{{ num }}</a> <!-- Páginas próximas -->
+        {% elif num == 1 or num == recipes.paginator.num_pages %}
+        <a href="?page={{ num }}&q={{ request.GET.q.strip }}">{{ num }}</a> <!-- Primeira e Última página -->
+        {% elif num == recipes.number|add:-6 or num == recipes.number|add:6 %}
+        <span>...</span>
+        {% endif %}
+        {% endfor %}
+    </span>
+
+    {% if recipes.has_next %}
+    <a href="?page={{ recipes.next_page_number }}&q={{ request.GET.q.strip }}">
+      <span class="next">Proxima</span>
+    </a>
+    <a href="?page={{ recipes.paginator.num_pages }}&q={{ request.GET.q.strip }}">
+      <i class="fa-solid fa-forward"></i>
+    </a>
+    {% endif %}
+  </span>
+</div>
+{% endif %}

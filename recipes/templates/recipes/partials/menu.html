@@ -1,1 +1,30 @@
-<h1>MENU</h1>
+<div class="header-container">
+  <header class="menu main-content">
+    <div class="logo-menu">
+      <a href="{% url "recipes:home" %}"><img src="{{ site_config.footer_logo.url }}" alt="Logo da empresa"></a>
+    </div>
+
+    <nav class="nav-menu">
+    {% for category in categories|slice:2 %}
+      <a href="{% url "recipes:category_search" category.name %}">{{ category }}</a>
+    {% endfor %}
+     <a href="{% url "recipes:categories" %}">Categorias</a>
+    </nav>
+
+    <form class="search-container" method="GET" action="{% url "recipes:search" %}">
+      <label type="hidden"  for="search" class="hidden">Procurar Receita</label>
+      <input 
+        class="search-input"
+        id="search"
+        type="search"
+        name="q"
+        placeholder="Procurar Receita"
+        alt="Input de busca" 
+        value="{{ search_value }}"
+      >
+      <button class="search-btn" type="submit"> 
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+  </header>
+</div>
